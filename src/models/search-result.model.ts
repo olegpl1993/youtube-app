@@ -1,3 +1,16 @@
+export interface SearchResultList {
+  TODO: string;
+  kind: string;
+  etag: string;
+  pageInfo: PageInfo;
+  items: SearchItem[];
+}
+
+export interface PageInfo {
+  totalResults: number;
+  resultsPerPage: number;
+}
+
 export interface SearchItem {
   kind: string;
   etag: string;

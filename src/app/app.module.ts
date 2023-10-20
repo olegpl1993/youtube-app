@@ -3,12 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
-import SearchResultModule from './search-result/search-result.module';
 import HeaderModule from './header/header.module';
+import SearchResultListModule from './search-result-list/search-result-list.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SearchResultModule, HeaderModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HeaderModule,
+    SearchResultListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
