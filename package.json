@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --open",
-    "build": "ng build",
+    "build": "ng build --base-href /olegpl1993-ANGULAR2023Q4/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
