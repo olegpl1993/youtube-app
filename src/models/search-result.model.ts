@@ -35,38 +35,14 @@ export interface Snippet {
 }
 
 export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
+  default: ThumbnailsSize;
+  medium: ThumbnailsSize;
+  high: ThumbnailsSize;
+  standard: ThumbnailsSize;
+  maxres: ThumbnailsSize;
 }
 
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
+export interface ThumbnailsSize {
   url: string;
   width: number;
   height: number;
