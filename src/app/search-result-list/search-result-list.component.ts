@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchResultList } from 'src/models/search-result.model';
+import { SearchItem } from 'src/models/search-result.model';
 
 @Component({
   selector: 'app-search-result-list',
@@ -7,5 +7,5 @@ import { SearchResultList } from 'src/models/search-result.model';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export default class SearchResultListComponent {
-  public searchResultList: SearchResultList = {} as SearchResultList;
+  public searchResults: SearchItem[] = [];
 }

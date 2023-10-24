@@ -7,5 +7,5 @@ import { SearchItem } from 'src/models/search-result.model';
   styleUrls: ['./search-result-item.component.scss'],
 })
 export default class SearchResultItemComponent {
-  @Input() public searchItem: SearchItem = {} as SearchItem;
+  @Input() public searchItem: SearchItem | null = null;
 }
