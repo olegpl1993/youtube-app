@@ -7,5 +7,6 @@ import SortComponent from './sort/sort.component';
 @NgModule({
   declarations: [HeaderComponent, SearchComponent, SortComponent],
   imports: [CommonModule],
+  exports: [HeaderComponent],
 })
 export default class HeaderModule {}

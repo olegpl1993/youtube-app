@@ -6,5 +6,6 @@ import SearchResultItemComponent from './search-result-item/search-result-item.c
 @NgModule({
   declarations: [SearchResultListComponent, SearchResultItemComponent],
   imports: [CommonModule],
+  exports: [SearchResultListComponent],
 })
 export default class SearchResultListModule {}
