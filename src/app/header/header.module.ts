@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import HeaderComponent from './header.component';
-import SearchComponent from './search/search.component';
-import SortComponent from './sort/sort.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SearchComponent, SortComponent],
+  declarations: [HeaderComponent],
   imports: [CommonModule],
   exports: [HeaderComponent],
 })
