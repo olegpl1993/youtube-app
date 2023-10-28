@@ -1,8 +1,92 @@
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  background-color: #E5E5E5;
+  background-color: var(--header-background-color);
+
+  &__searchRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    position: relative;
+  }
+
+  &__searchBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__searchInput {
+    width: 396px;
+    height: 24px;
+    background: #efefef;
+    font-size: 12px;
+    padding: 3px 5px;
+
+    &::placeholder {
+      color: var(--secondary-text-color);
+    }
+  }
+
+  & &__searchBtn {
+    background-color: var(--primary-color);
+    color: var(--white-text-color);
+    font-weight: 400;
+    font-size: 12px;
+    box-shadow: 2px 0px 4px 0px var(--primary-color);
+    width: 80px;
+    height: 24px;
+  }
+
+  &__settingsBtn {
+    box-shadow: 2px 0px 4px 0px var(--primary-color);
+    border-radius: 5px;
+  }
+
+  &__loginBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    right: 20px;
+  }
+
+  &__loginBtn {
+    background-color: var(--header-background-color);
+  }
+
+  &__sortRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: var(--header-background-color);
+    gap: 13px;
+  }
+
+  &__sortText {
+    color: var(--secondary-text-color);
+  }
+
+  &__sortBtn {
+    color: var(--primary-color);
+    text-decoration: underline;
+    background-color: var(--header-background-color);
+  }
+
+  &__sortInput {
+    height: 13px;
+    width: 149px;
+  }
 }

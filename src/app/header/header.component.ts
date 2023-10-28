@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export default class HeaderComponent {}
+export default class HeaderComponent {
+  public isOpenSort = false;
+
+  setOpenSort(): void {
+    this.isOpenSort = !this.isOpenSort;
+  }
+
+  test(): void {
+    console.log('test');
+  }
+}
