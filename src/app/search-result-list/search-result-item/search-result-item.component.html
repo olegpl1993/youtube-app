@@ -1,1 +1,11 @@
-<p>search-result-item works!</p>
+<div class="search-result-item">
+  <img
+    class="search-result-item__img"
+    [src]="searchItem?.snippet?.thumbnails?.high?.url"
+    alt="search-item-img"
+  />
+  <div class="search-result-item__title">{{ searchItem?.snippet?.title }}</div>
+  <button mat-flat-button class="search-result-item__moreBtn" (click)="test()">
+    more...
+  </button>
+</div>

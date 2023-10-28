@@ -5,5 +5,14 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-top: 44px;
+  }
 }

@@ -15,6 +15,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "operator-linebreak": "off",
         "class-methods-use-this": "off",
         "linebreak-style": "off",
         "no-console": "off",

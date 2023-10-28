@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--header-background-color);
+  background-color: var(--second-background-color);
 
   &__searchRow {
     width: 100%;
@@ -57,7 +57,7 @@
     align-items: center;
     gap: 10px;
     position: absolute;
-    right: 20px;
+    right: 30px;
   }
 
   &__loginBtn {
@@ -71,7 +71,7 @@
     justify-content: center;
     align-items: center;
     height: 50px;
-    background-color: var(--header-background-color);
+    background-color: var(--second-background-color);
     gap: 13px;
   }
 
@@ -82,7 +82,7 @@
   &__sortBtn {
     color: var(--primary-color);
     text-decoration: underline;
-    background-color: var(--header-background-color);
+    background-color: var(--second-background-color);
   }
 
   &__sortInput {

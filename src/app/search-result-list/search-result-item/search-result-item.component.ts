@@ -8,4 +8,8 @@ import { SearchItem } from 'src/models/search-result.model';
 })
 export default class SearchResultItemComponent {
   @Input() public searchItem: SearchItem | null = null;
+
+  public test(): void {
+    console.log('test');
+  }
 }

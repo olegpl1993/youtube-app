@@ -2,10 +2,13 @@
   --primary-color: #2f80ed;
   --secondary-color: #5ea2ff;
 
+  --background-color: #ffffff;
+  --second-background-color: #e5e5e5;
+
   --primary-text-color: #000000;
   --secondary-text-color: #929292;
+  --title-text-color: #4f4f4f;
   --white-text-color: #ffffff;
-  --header-background-color: #e5e5e5;
 }
 
 * {
@@ -88,6 +91,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--primary--text-color);
+  background-color: var(--background-color);
   font-size: 12px;
 }
 

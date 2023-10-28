@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchItem } from 'src/models/search-result.model';
 
 @Component({
@@ -7,5 +7,5 @@ import { SearchItem } from 'src/models/search-result.model';
   styleUrls: ['./search-result-list.component.scss'],
 })
 export default class SearchResultListComponent {
-  public searchResults: SearchItem[] = [];
+  @Input() public searchResults: SearchItem[] = [];
 }
