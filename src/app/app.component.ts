@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { SearchItem, SearchResultList } from 'src/models/search-result.model';
-import ApiService from 'src/sevices/api.service';
+import {
+  SearchItem,
+  SearchResultList,
+} from 'src/shared/models/search-result.model';
+import ApiService from 'src/shared/sevices/api.service';
 
 @Component({
   selector: 'app-root',
