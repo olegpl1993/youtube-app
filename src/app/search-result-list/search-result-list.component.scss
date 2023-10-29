@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   &__content {
     display: flex;
@@ -13,6 +15,5 @@
     align-items: center;
     justify-content: center;
     gap: 28px;
-    padding-top: 44px;
   }
 }
