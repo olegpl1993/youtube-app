@@ -15,13 +15,10 @@
             placeholder="What are you want to find out?"
             (input)="handleSearchInput($event)"
           />
-          <button
-            mat-flat-button
-            class="header__searchBtn"
-            (click)="handleSearch()"
-          >
+
+          <app-button (click)="handleSearch()" height="24px" width="80px">
             search
-          </button>
+          </app-button>
         </div>
 
         <button class="header__settingsBtn" (click)="setOpenSort()">

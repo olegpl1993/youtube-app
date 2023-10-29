@@ -23,7 +23,6 @@ export default class SearchResultItemComponent {
   }
 
   public test(): void {
-    console.log('test');
-    console.log(this.getColor());
+    alert('go to next page!');
   }
 }
