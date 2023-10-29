@@ -35,8 +35,7 @@
   </button>
 
   <div
-    class="search-result-item__colorRow search-result-item__colorRow_{{
-      getColor()
-    }}"
+    class="search-result-item__colorRow"
+    [ngStyle]="{ 'background-color': getColor() }"
   ></div>
 </div>
