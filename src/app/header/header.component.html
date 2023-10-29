@@ -13,8 +13,13 @@
             type="text"
             class="header__searchInput"
             placeholder="What are you want to find out?"
+            (input)="handleSearchInput($event)"
           />
-          <button mat-flat-button class="header__searchBtn" (click)="test()">
+          <button
+            mat-flat-button
+            class="header__searchBtn"
+            (click)="handleSearch()"
+          >
             search
           </button>
         </div>

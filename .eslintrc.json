@@ -15,6 +15,9 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "function-paren-newline": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "implicit-arrow-linebreak": "off",
         "operator-linebreak": "off",
         "class-methods-use-this": "off",
         "linebreak-style": "off",

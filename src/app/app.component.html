@@ -1,6 +1,8 @@
 <div class="wrapper">
-  <app-header></app-header>
+  <app-header [appComponent]="this"></app-header>
   <router-outlet>
-    <app-search-result-list [searchResults]="searchResults"></app-search-result-list>
+    <app-search-result-list
+      [searchResults]="searchResults"
+    ></app-search-result-list>
   </router-outlet>
 </div>
