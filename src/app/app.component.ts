@@ -15,20 +15,27 @@ export default class AppComponent {
 
   public searchResults: SearchItem[] = [];
 
+  public searchInput = '';
+
+  handleSearchInput(searchInput: string) {
+    this.searchInput = searchInput;
+  }
+
   constructor(private apiService: ApiService) {
     this.apiService.getData().subscribe((data) => {
       this.data = data;
     });
   }
 
-  handleSearch(searchInput: string): void {
+  handleSearch(): void {
     const items = this.data ? this.data.items : [];
-    console.log('searchInput test = ', searchInput);
-    if (searchInput.length === 0) {
+    if (this.searchInput.length === 0) {
       this.searchResults = items;
     } else {
       this.searchResults = items.filter((item) =>
-        item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
+        item.snippet.title
+          .toLowerCase()
+          .includes(this.searchInput.toLowerCase())
       );
     }
   }

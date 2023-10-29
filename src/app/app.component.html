@@ -1,6 +1,7 @@
 <div class="wrapper">
-  <app-header
-    [appComponent]="this"
+  <app-header 
+  (outputSearchInput)="handleSearchInput($event)"
+  (outputSearch)="handleSearch()"
   ></app-header>
   <router-outlet>
     <app-search-result-list
