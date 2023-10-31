@@ -1,10 +1,10 @@
-/* eslint-disable quote-props */
 import { Component } from '@angular/core';
 import {
   SearchItem,
   SearchResultList,
 } from 'src/shared/models/search-result.model';
 import ApiService from 'src/shared/sevices/api.service';
+import FilterPipe from './filter.pipe';
 
 @Component({
   selector: 'app-root',
@@ -28,19 +28,24 @@ export default class AppComponent {
 
   public sortingDateUP = true;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private filterPipe: FilterPipe) {
     this.apiService.getData().subscribe((data) => {
       this.data = data;
     });
   }
 
-  public sortingObj = {
+  public sortingMap = {
     '': () => {
       this.renderData = this.searchResults;
     },
     date: () => this.sortByDate(),
     views: () => this.sortByViews(),
-    word: () => this.sortByWord(),
+    word: () => {
+      this.renderData = this.filterPipe.transform(
+        this.searchResults,
+        this.sortingInput
+      );
+    },
   };
 
   sortByDate(): void {
@@ -75,16 +80,6 @@ export default class AppComponent {
     this.sortingViewsUP = !this.sortingViewsUP;
   }
 
-  sortByWord(): void {
-    if (this.sortingInput.length === 0) {
-      this.renderData = this.searchResults;
-    } else {
-      this.renderData = this.searchResults.filter((item) =>
-        item.snippet.tags.includes(this.sortingInput.toLowerCase())
-      );
-    }
-  }
-
   handleSortingInput(sortingInput: string) {
     this.sortingInput = sortingInput;
     console.log(this.sortingInput);
@@ -92,7 +87,7 @@ export default class AppComponent {
 
   handleSorting(sorting: string) {
     this.sorting = sorting;
-    this.sortingObj[this.sorting as keyof typeof this.sortingObj]();
+    this.sortingMap[this.sorting as keyof typeof this.sortingMap]();
   }
 
   handleSearchInput(searchInput: string) {
@@ -110,6 +105,6 @@ export default class AppComponent {
           .includes(this.searchInput.toLowerCase())
       );
     }
-    this.sortingObj[this.sorting as keyof typeof this.sortingObj]();
+    this.sortingMap[this.sorting as keyof typeof this.sortingMap]();
   }
 }

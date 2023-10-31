@@ -6,9 +6,10 @@ import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import HeaderModule from './header/header.module';
 import SearchResultListModule from './search-result-list/search-result-list.module';
+import FilterPipe from './filter.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FilterPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,7 +18,7 @@ import SearchResultListModule from './search-result-list/search-result-list.modu
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent],
 })
 export default class AppModule {}

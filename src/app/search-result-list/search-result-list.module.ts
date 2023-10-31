@@ -6,7 +6,10 @@ import SearchResultItemComponent from './search-result-item/search-result-item.c
 import ButtonComponent from '../../shared/button/button.component';
 
 @NgModule({
-  declarations: [SearchResultListComponent, SearchResultItemComponent],
+  declarations: [
+    SearchResultListComponent,
+    SearchResultItemComponent,
+  ],
   imports: [CommonModule, MatButtonModule, ButtonComponent],
   exports: [SearchResultListComponent],
 })
