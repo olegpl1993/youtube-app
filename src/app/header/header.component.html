@@ -2,11 +2,7 @@
   <div class="container">
     <div class="header__searchRow">
       <div class="header__searchBox">
-        <img
-          src="assets/logo.svg"
-          alt="youtube-img"
-          class="header__logo"
-        />
+        <img src="assets/logo.svg" alt="youtube-img" class="header__logo" />
 
         <div class="header__searchContainer">
           <input
@@ -22,10 +18,7 @@
         </div>
 
         <button class="header__settingsBtn" (click)="setOpenSort()">
-          <img
-            src="assets/search_settings.svg"
-            alt="search-settings-img"
-          />
+          <img src="assets/search_settings.svg" alt="search-settings-img" />
         </button>
       </div>
 
@@ -39,10 +32,20 @@
 
     <div class="header__sortRow" *ngIf="isOpenSort">
       <p class="header__sortText">Sorting by:</p>
-      <button class="header__sortBtn">date</button>
-      <button class="header__sortBtn">count of views</button>
-      <button class="header__sortBtn">by word or sentance</button>
-      <input type="text" class="header__sortInput" />
+      <button class="header__sortBtn" (click)="handleSorting('date')">
+        date
+      </button>
+      <button class="header__sortBtn" (click)="handleSorting('views')">
+        count of views
+      </button>
+      <button class="header__sortBtn" (click)="handleSorting('word')">
+        by word or sentance
+      </button>
+      <input
+        type="text"
+        class="header__sortInput"
+        (input)="handleSortingInput($event)"
+      />
     </div>
   </div>
 </div>

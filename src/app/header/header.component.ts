@@ -10,7 +10,21 @@ export default class HeaderComponent {
 
   @Output() outputSearch = new EventEmitter();
 
+  @Output() outputSorting = new EventEmitter<string>();
+
+  @Output() outputSortingInput = new EventEmitter<string>();
+
   public isOpenSort = false;
+
+  handleSortingInput(event: Event): void {
+    if (event.target instanceof HTMLInputElement) {
+      this.outputSortingInput.emit(String(event.target.value).trim());
+    }
+  }
+
+  handleSorting(sorting: string) {
+    this.outputSorting.emit(sorting);
+  }
 
   handleSearchInput(event: Event): void {
     if (event.target instanceof HTMLInputElement) {
