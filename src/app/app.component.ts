@@ -5,6 +5,7 @@ import {
 } from 'src/shared/models/search-result.model';
 import ApiService from 'src/shared/sevices/api.service';
 import FilterPipe from './filter.pipe';
+import SortService from './sort.service';
 
 @Component({
   selector: 'app-root',
@@ -24,70 +25,32 @@ export default class AppComponent {
 
   public sortingInput = '';
 
-  public sortingViewsUP = true;
-
-  public sortingDateUP = true;
-
-  constructor(private apiService: ApiService, private filterPipe: FilterPipe) {
+  constructor(
+    private apiService: ApiService,
+    private filterPipe: FilterPipe,
+    private sortService: SortService
+  ) {
     this.apiService.getData().subscribe((data) => {
       this.data = data;
     });
   }
 
-  public sortingMap = {
-    '': () => {
-      this.renderData = this.searchResults;
-    },
-    date: () => this.sortByDate(),
-    views: () => this.sortByViews(),
-    word: () => {
-      this.renderData = this.filterPipe.transform(
-        this.searchResults,
-        this.sortingInput
-      );
-    },
+  public processingMap = {
+    '': () => this.searchResults,
+    date: () => this.sortService.sorter(this.searchResults, 'date'),
+    views: () => this.sortService.sorter(this.searchResults, 'views'),
+    word: () =>
+      this.filterPipe.transform(this.searchResults, this.sortingInput),
   };
-
-  sortByDate(): void {
-    if (this.sortingDateUP) {
-      this.renderData = this.searchResults.sort(
-        (a, b) =>
-          new Date(b.snippet.publishedAt).getDate() -
-          new Date(a.snippet.publishedAt).getDate()
-      );
-    } else {
-      this.renderData = this.searchResults.sort(
-        (a, b) =>
-          new Date(a.snippet.publishedAt).getDate() -
-          new Date(b.snippet.publishedAt).getDate()
-      );
-    }
-    this.sortingDateUP = !this.sortingDateUP;
-  }
-
-  sortByViews(): void {
-    if (this.sortingViewsUP) {
-      this.renderData = this.searchResults.sort(
-        (a, b) =>
-          Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
-      );
-    } else {
-      this.renderData = this.searchResults.sort(
-        (a, b) =>
-          Number(a.statistics.viewCount) - Number(b.statistics.viewCount)
-      );
-    }
-    this.sortingViewsUP = !this.sortingViewsUP;
-  }
 
   handleSortingInput(sortingInput: string) {
     this.sortingInput = sortingInput;
-    console.log(this.sortingInput);
   }
 
   handleSorting(sorting: string) {
     this.sorting = sorting;
-    this.sortingMap[this.sorting as keyof typeof this.sortingMap]();
+    this.renderData =
+      this.processingMap[this.sorting as keyof typeof this.processingMap]();
   }
 
   handleSearchInput(searchInput: string) {
@@ -105,6 +68,7 @@ export default class AppComponent {
           .includes(this.searchInput.toLowerCase())
       );
     }
-    this.sortingMap[this.sorting as keyof typeof this.sortingMap]();
+    this.renderData =
+      this.processingMap[this.sorting as keyof typeof this.processingMap]();
   }
 }
