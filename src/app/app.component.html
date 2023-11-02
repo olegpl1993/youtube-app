@@ -1,13 +1,17 @@
 <div class="wrapper">
-  <app-header 
-  (outputSearchInput)="handleSearchInput($event)"
-  (outputSearch)="handleSearch()"
-  (outputSorting)="handleSorting($event)"
-  (outputSortingInput)="handleSortingInput($event)"
+  <app-header
+    (outputSearchInput)="handleSearchInput($event)"
+    (outputSearch)="handleSearch()"
+    (outputSorting)="handleSorting($event)"
+    (outputSortingInput)="handleSortingInput($event)"
   ></app-header>
   <router-outlet>
     <app-search-result-list
-      [searchResults]="renderData"
+      [searchResults]="
+        sorting === 'word'
+          ? (renderData | filter : sortingInput)
+          : renderData
+      "
     ></app-search-result-list>
   </router-outlet>
 </div>

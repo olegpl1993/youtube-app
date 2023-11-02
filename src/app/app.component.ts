@@ -4,7 +4,6 @@ import {
   SearchResultList,
 } from 'src/shared/models/search-result.model';
 import ApiService from 'src/shared/sevices/api.service';
-import FilterPipe from './filter.pipe';
 import SortService from './sort.service';
 
 @Component({
@@ -27,7 +26,6 @@ export default class AppComponent {
 
   constructor(
     private apiService: ApiService,
-    private filterPipe: FilterPipe,
     private sortService: SortService
   ) {
     this.apiService.getData().subscribe((data) => {
@@ -39,8 +37,6 @@ export default class AppComponent {
     '': () => this.searchResults,
     date: () => this.sortService.sorter(this.searchResults, 'date'),
     views: () => this.sortService.sorter(this.searchResults, 'views'),
-    word: () =>
-      this.filterPipe.transform(this.searchResults, this.sortingInput),
   };
 
   handleSortingInput(sortingInput: string) {
