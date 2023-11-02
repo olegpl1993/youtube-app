@@ -4,11 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import SearchResultListComponent from './search-result-list.component';
 import SearchResultItemComponent from './search-result-item/search-result-item.component';
 import ButtonComponent from '../../shared/button/button.component';
+import TimeToColorDirective from './time-to-color.directive';
 
 @NgModule({
   declarations: [
     SearchResultListComponent,
     SearchResultItemComponent,
+    TimeToColorDirective,
   ],
   imports: [CommonModule, MatButtonModule, ButtonComponent],
   exports: [SearchResultListComponent],

@@ -32,8 +32,5 @@
 
   <app-button (click)="test()" height="32px" width="120px">more...</app-button>
 
-  <div
-    class="search-result-item__colorRow"
-    [ngStyle]="{ 'background-color': getColor() }"
-  ></div>
+  <div class="search-result-item__colorRow" [appTimeToColor]="searchItem?.snippet?.publishedAt"></div>
 </div>
