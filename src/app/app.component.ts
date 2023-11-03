@@ -34,7 +34,6 @@ export default class AppComponent {
   }
 
   public processingMap = {
-    '': () => this.searchResults,
     date: () => this.sortService.sorter(this.searchResults, 'date'),
     views: () => this.sortService.sorter(this.searchResults, 'views'),
   };
@@ -43,10 +42,18 @@ export default class AppComponent {
     this.sortingInput = sortingInput;
   }
 
-  handleSorting(sorting: string) {
-    this.sorting = sorting;
+  createRenderData() {
+    if (!this.sorting.length || this.sorting === 'word') {
+      this.renderData = this.searchResults;
+      return;
+    }
     this.renderData =
       this.processingMap[this.sorting as keyof typeof this.processingMap]();
+  }
+
+  handleSorting(sorting: string) {
+    this.sorting = sorting;
+    this.createRenderData();
   }
 
   handleSearchInput(searchInput: string) {
@@ -64,7 +71,6 @@ export default class AppComponent {
           .includes(this.searchInput.toLowerCase())
       );
     }
-    this.renderData =
-      this.processingMap[this.sorting as keyof typeof this.processingMap]();
+    this.createRenderData();
   }
 }
