@@ -2,15 +2,13 @@
   <app-header
     (outputSearchInput)="handleSearchInput($event)"
     (outputSearch)="handleSearch()"
-    (outputSorting)="handleSorting($event)"
     (outputSortingInput)="handleSortingInput($event)"
+    (outputSortKey)="handleSortKey($event)"
   ></app-header>
   <router-outlet>
     <app-search-result-list
       [searchResults]="
-        sorting === 'word'
-          ? (renderData | filter : sortingInput)
-          : renderData
+        sortKey === 'Word' ? (renderData | filter : sortingInput) : renderData
       "
     ></app-search-result-list>
   </router-outlet>

@@ -4,6 +4,7 @@ import {
   SearchResultList,
 } from 'src/shared/models/search-result.model';
 import ApiService from 'src/shared/sevices/api.service';
+import SortKey from 'src/shared/enums/sort-key.enum';
 import SortService from './sort.service';
 
 @Component({
@@ -20,9 +21,9 @@ export default class AppComponent {
 
   public searchInput = '';
 
-  public sorting = '';
-
   public sortingInput = '';
+
+  public sortKey: SortKey | null = null;
 
   constructor(
     private apiService: ApiService,
@@ -33,27 +34,21 @@ export default class AppComponent {
     });
   }
 
-  public processingMap = {
-    date: () => this.sortService.sorter(this.searchResults, 'date'),
-    views: () => this.sortService.sorter(this.searchResults, 'views'),
-  };
+  handleSortKey(sortKey: SortKey) {
+    this.sortKey = sortKey;
+    this.createRenderData();
+  }
 
   handleSortingInput(sortingInput: string) {
     this.sortingInput = sortingInput;
   }
 
   createRenderData() {
-    if (!this.sorting.length || this.sorting === 'word') {
+    if (this.sortKey === null) {
       this.renderData = this.searchResults;
       return;
     }
-    this.renderData =
-      this.processingMap[this.sorting as keyof typeof this.processingMap]();
-  }
-
-  handleSorting(sorting: string) {
-    this.sorting = sorting;
-    this.createRenderData();
+    this.renderData = this.sortService.sorter(this.searchResults, this.sortKey);
   }
 
   handleSearchInput(searchInput: string) {
