@@ -1,1 +1,36 @@
-<p>search-result-item works!</p>
+<div class="search-result-item">
+  <div class="search-result-item__topContainer">
+    <img
+      class="search-result-item__img"
+      [src]="searchItem?.snippet?.thumbnails?.high?.url"
+      alt="search-item-img"
+    />
+
+    <div class="search-result-item__statistics">
+      <span class="search-result-item__statisticsText">
+        <img src="assets/viewed.svg" alt="view-img" />
+        {{ searchItem?.statistics?.viewCount }}
+      </span>
+      <span class="search-result-item__statisticsText">
+        <img src="assets/liked.svg" alt="like-img" />
+        {{ searchItem?.statistics?.likeCount }}
+      </span>
+      <span class="search-result-item__statisticsText">
+        <img src="assets/dislike.svg" alt="dislike-img" />
+        {{ searchItem?.statistics?.dislikeCount }}
+      </span>
+      <span class="search-result-item__statisticsText">
+        <img src="assets/Group 9.svg" alt="comment-img" />
+        {{ searchItem?.statistics?.commentCount }}
+      </span>
+    </div>
+
+    <div class="search-result-item__title">
+      {{ searchItem?.snippet?.title }}
+    </div>
+  </div>
+
+  <app-button (click)="test()" height="32px" width="120px">more...</app-button>
+
+  <div class="search-result-item__colorRow" [appTimeToColor]="searchItem?.snippet?.publishedAt"></div>
+</div>

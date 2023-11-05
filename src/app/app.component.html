@@ -1,1 +1,15 @@
-<p>APP COMPONENT</p>
+<div class="wrapper">
+  <app-header
+    (outputSearchInput)="handleSearchInput($event)"
+    (outputSearch)="handleSearch()"
+    (outputSortingInput)="handleSortingInput($event)"
+    (outputSortKey)="handleSortKey($event)"
+  ></app-header>
+  <router-outlet>
+    <app-search-result-list
+      [searchResults]="
+        sortKey === 'Word' ? (renderData | filter : sortingInput) : renderData
+      "
+    ></app-search-result-list>
+  </router-outlet>
+</div>
