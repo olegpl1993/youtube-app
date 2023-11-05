@@ -4,19 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
-import HeaderModule from './header/header.module';
-import SearchResultListModule from './search-result-list/search-result-list.module';
-import FilterPipe from './filter.pipe';
+import FilterPipe from './youtube/pipes/filter.pipe';
+import CoreModule from './core/core.module';
+import YoutubeModule from './youtube/youtube.module';
 
 @NgModule({
   declarations: [AppComponent, FilterPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule,
-    SearchResultListModule,
+    CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    YoutubeModule,
   ],
   providers: [FilterPipe],
   bootstrap: [AppComponent],

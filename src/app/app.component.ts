@@ -5,7 +5,7 @@ import {
 } from 'src/shared/models/search-result.model';
 import ApiService from 'src/shared/sevices/api.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
-import SortService from './sort.service';
+import SortService from './youtube/services/sort.service';
 
 @Component({
   selector: 'app-root',
