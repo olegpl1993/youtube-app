@@ -5,14 +5,19 @@ import ButtonComponent from '../../shared/button/button.component';
 import TimeToColorDirective from './directives/time-to-color.directive';
 import SearchResultListComponent from './components/search-result-list/search-result-list.component';
 import SearchResultItemComponent from './components/search-result-item/search-result-item.component';
+import YoutubeComponent from './pages/youtube/youtube.component';
+import YoutubeRoutingModule from './youtube-routing.module';
+import DetailsComponent from './pages/details/details.component';
 
 @NgModule({
   declarations: [
     SearchResultListComponent,
     SearchResultItemComponent,
     TimeToColorDirective,
+    YoutubeComponent,
+    DetailsComponent,
   ],
-  imports: [CommonModule, MatButtonModule, ButtonComponent],
-  exports: [SearchResultListComponent],
+  imports: [CommonModule, MatButtonModule, ButtonComponent, YoutubeRoutingModule],
+  exports: [SearchResultListComponent, YoutubeComponent],
 })
 export default class YoutubeModule {}

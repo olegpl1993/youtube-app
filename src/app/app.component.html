@@ -5,11 +5,5 @@
     (outputSortingInput)="handleSortingInput($event)"
     (outputSortKey)="handleSortKey($event)"
   ></app-header>
-  <router-outlet>
-    <app-search-result-list
-      [searchResults]="
-        sortKey === 'Word' ? (renderData | filter : sortingInput) : renderData
-      "
-    ></app-search-result-list>
-  </router-outlet>
+  <router-outlet></router-outlet>
 </div>
