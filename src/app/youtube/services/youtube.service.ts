@@ -12,67 +12,58 @@ import ApiService from 'src/shared/sevices/api.service';
   providedIn: 'root',
 })
 export default class YoutubeService {
-  private renderDataSubject = new BehaviorSubject<SearchItem[]>([]);
-
-  renderData$ = this.renderDataSubject.asObservable();
-
-  updateRenderData(newValue: SearchItem[]) {
-    this.renderDataSubject.next(newValue);
-  }
-  // ---------------------
-
-  public data: SearchResultList | null = null;
-
-  public searchResults: SearchItem[] = [];
-
-  public renderData: SearchItem[] = [];
-
-  public searchInput = '';
-
-  public sortingInput = '';
-
-  public sortKey: SortKey | null = null;
-
   constructor(
     private apiService: ApiService,
     private sortService: SortService
   ) {
     this.apiService.getData().subscribe((data) => {
       this.data = data;
-      this.updateRenderData(this.data.items);
     });
   }
 
-  handleSortKey(sortKey: SortKey) {
-    this.sortKey = sortKey;
+  public data: SearchResultList | null = null;
+  public searchResults: SearchItem[] = [];
+
+  private renderDataSubject = new BehaviorSubject<SearchItem[]>([]);
+  renderData$ = this.renderDataSubject.asObservable();
+
+  private searchInputSubject = new BehaviorSubject('');
+  updateSearchInput(newValue: string) {
+    this.searchInputSubject.next(newValue);
+  }
+
+  private sortingInputSubject = new BehaviorSubject('');
+  sortingInput$ = this.sortingInputSubject.asObservable();
+  updateSortingInput(newValue: string) {
+    this.sortingInputSubject.next(newValue);
+  }
+
+  private sortKeySubject = new BehaviorSubject<SortKey | null>(null);
+  sortKey$ = this.sortKeySubject.asObservable();
+  updateSortKey(sortKey: SortKey) {
+    this.sortKeySubject.next(sortKey);
     this.createRenderData();
   }
 
-  handleSortingInput(sortingInput: string) {
-    this.sortingInput = sortingInput;
-  }
-
   createRenderData() {
-    if (this.sortKey === null) {
-      this.renderData = this.searchResults;
+    const sortKey = this.sortKeySubject.getValue();
+    if (sortKey === null) {
+      this.renderDataSubject.next(this.searchResults);
       return;
     }
-    this.renderData = this.sortService.sorter(this.searchResults, this.sortKey);
-  }
-
-  handleSearchInput(searchInput: string) {
-    this.searchInput = searchInput;
+    this.renderDataSubject.next(
+      this.sortService.sorter(this.searchResults, sortKey)
+    );
   }
 
   handleSearch(): void {
+    const searchInput = this.searchInputSubject.getValue();
     const items = this.data ? this.data.items : [];
-    if (this.searchInput.length === 0) {
+    if (searchInput.length === 0) {
       this.searchResults = items;
     } else {
       this.searchResults = items.filter((item) =>
-        item.snippet.title
-          .toLowerCase()
-          .includes(this.searchInput.toLowerCase())
+        item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
       );
     }
     this.createRenderData();

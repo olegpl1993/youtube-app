@@ -1,8 +1,16 @@
 <div class="search-result-list">
   <div class="container">
     <div class="search-result-list__content">
-      <ng-container *ngFor="let searchItem of searchResults">
-        <app-search-result-item [searchItem]="searchItem"></app-search-result-item>
+      <ng-container
+        *ngFor="
+          let searchItem of sortKey === 'Word'
+            ? (searchResults | filter : sortingInput)
+            : searchResults
+        "
+      >
+        <app-search-result-item
+          [searchItem]="searchItem"
+        ></app-search-result-item>
       </ng-container>
     </div>
   </div>

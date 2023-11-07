@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import YoutubeService from 'src/app/youtube/services/youtube.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
 
 @Component({
@@ -7,50 +8,38 @@ import SortKey from 'src/shared/enums/sort-key.enum';
   styleUrls: ['./header.component.scss'],
 })
 export default class HeaderComponent {
-  @Output() outputSearchInput = new EventEmitter<string>();
-
-  @Output() outputSearch = new EventEmitter();
-
-  @Output() outputSorting = new EventEmitter<string>();
-
-  @Output() outputSortingInput = new EventEmitter<string>();
-
-  @Output() outputSortKey = new EventEmitter<SortKey>();
+  constructor(private youtubeService: YoutubeService) {}
 
   public isOpenSort = false;
-
   public sortDirection = true;
-
-  public selectedButton: string | null = null;
 
   handleSortingInput(event: Event): void {
     if (event.target instanceof HTMLInputElement) {
-      this.outputSortingInput.emit(String(event.target.value).trim());
+      this.youtubeService.updateSortingInput(String(event.target.value).trim());
     }
   }
 
   handleSorting(sort: string) {
-    this.outputSorting.emit(sort);
-    if (sort === 'word') this.outputSortKey.emit(SortKey.Word);
+    if (sort === 'word') this.youtubeService.updateSortKey(SortKey.Word);
     if (sort === 'date' && this.sortDirection)
-      this.outputSortKey.emit(SortKey.DateUP);
+      this.youtubeService.updateSortKey(SortKey.DateUP);
     if (sort === 'views' && this.sortDirection)
-      this.outputSortKey.emit(SortKey.ViewsUP);
+      this.youtubeService.updateSortKey(SortKey.ViewsUP);
     if (sort === 'date' && !this.sortDirection)
-      this.outputSortKey.emit(SortKey.DateDOWN);
+      this.youtubeService.updateSortKey(SortKey.DateDOWN);
     if (sort === 'views' && !this.sortDirection)
-      this.outputSortKey.emit(SortKey.ViewsDOWN);
+      this.youtubeService.updateSortKey(SortKey.ViewsDOWN);
     this.sortDirection = !this.sortDirection;
   }
 
   handleSearchInput(event: Event): void {
     if (event.target instanceof HTMLInputElement) {
-      this.outputSearchInput.emit(String(event.target.value).trim());
+      this.youtubeService.updateSearchInput(String(event.target.value).trim());
     }
   }
 
   handleSearch(): void {
-    this.outputSearch.emit();
+    this.youtubeService.handleSearch();
   }
 
   setOpenSort(): void {

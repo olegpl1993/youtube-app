@@ -4,14 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
-import FilterPipe from './youtube/pipes/filter.pipe';
 import CoreModule from './core/core.module';
 import YoutubeModule from './youtube/youtube.module';
 import AuthModule from './auth/auth.module';
 import PageNotFoundComponent from '../shared/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +21,6 @@ import PageNotFoundComponent from '../shared/page-not-found/page-not-found.compo
     AuthModule,
     PageNotFoundComponent,
   ],
-  providers: [FilterPipe],
   bootstrap: [AppComponent],
 })
 export default class AppModule {}

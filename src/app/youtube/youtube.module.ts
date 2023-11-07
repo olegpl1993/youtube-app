@@ -7,6 +7,7 @@ import SearchResultListComponent from './pages/search-result-list/search-result-
 import SearchResultItemComponent from './components/search-result-item/search-result-item.component';
 import YoutubeRoutingModule from './youtube-routing.module';
 import DetailsComponent from './pages/details/details.component';
+import FilterPipe from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import DetailsComponent from './pages/details/details.component';
     SearchResultItemComponent,
     TimeToColorDirective,
     DetailsComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,
@@ -22,5 +24,6 @@ import DetailsComponent from './pages/details/details.component';
     YoutubeRoutingModule,
   ],
   exports: [SearchResultListComponent],
+  providers: [FilterPipe],
 })
 export default class YoutubeModule {}
