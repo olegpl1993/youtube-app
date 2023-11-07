@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import ButtonComponent from '../../shared/button/button.component';
 import TimeToColorDirective from './directives/time-to-color.directive';
-import SearchResultListComponent from './components/search-result-list/search-result-list.component';
+import SearchResultListComponent from './pages/search-result-list/search-result-list.component';
 import SearchResultItemComponent from './components/search-result-item/search-result-item.component';
-import YoutubeComponent from './pages/youtube/youtube.component';
 import YoutubeRoutingModule from './youtube-routing.module';
 import DetailsComponent from './pages/details/details.component';
 
@@ -14,10 +13,14 @@ import DetailsComponent from './pages/details/details.component';
     SearchResultListComponent,
     SearchResultItemComponent,
     TimeToColorDirective,
-    YoutubeComponent,
     DetailsComponent,
   ],
-  imports: [CommonModule, MatButtonModule, ButtonComponent, YoutubeRoutingModule],
-  exports: [SearchResultListComponent, YoutubeComponent],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    ButtonComponent,
+    YoutubeRoutingModule,
+  ],
+  exports: [SearchResultListComponent],
 })
 export default class YoutubeModule {}
