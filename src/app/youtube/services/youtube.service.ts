@@ -17,12 +17,14 @@ export default class YoutubeService {
     private sortService: SortService
   ) {
     this.apiService.getData().subscribe((data) => {
-      this.data = data;
+      this.dataSubject.next(data);
     });
   }
 
-  public data: SearchResultList | null = null;
-  public searchResults: SearchItem[] = [];
+  private dataSubject = new BehaviorSubject<SearchResultList | null>(null);
+  data$ = this.dataSubject.asObservable();
+
+  private searchResultsSubject = new BehaviorSubject<SearchItem[]>([]);
 
   private renderDataSubject = new BehaviorSubject<SearchItem[]>([]);
   renderData$ = this.renderDataSubject.asObservable();
@@ -47,25 +49,25 @@ export default class YoutubeService {
 
   createRenderData() {
     const sortKey = this.sortKeySubject.getValue();
-    if (sortKey === null) {
-      this.renderDataSubject.next(this.searchResults);
-      return;
-    }
-    this.renderDataSubject.next(
-      this.sortService.sorter(this.searchResults, sortKey)
-    );
+    if (sortKey === null)
+      this.renderDataSubject.next(this.searchResultsSubject.getValue());
+    else
+      this.renderDataSubject.next(
+        this.sortService.sorter(this.searchResultsSubject.getValue(), sortKey)
+      );
   }
 
   handleSearch(): void {
+    const data = this.dataSubject.getValue();
     const searchInput = this.searchInputSubject.getValue();
-    const items = this.data ? this.data.items : [];
-    if (searchInput.length === 0) {
-      this.searchResults = items;
-    } else {
-      this.searchResults = items.filter((item) =>
-        item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
+    const items = data ? data.items : [];
+    if (searchInput.length === 0) this.searchResultsSubject.next(items);
+    else
+      this.searchResultsSubject.next(
+        items.filter((item) =>
+          item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
+        )
       );
-    }
     this.createRenderData();
   }
 }
