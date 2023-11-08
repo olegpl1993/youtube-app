@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SearchItem } from 'src/shared/models/search-result.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-result-item',
@@ -9,7 +10,9 @@ import { SearchItem } from 'src/shared/models/search-result.model';
 export default class SearchResultItemComponent {
   @Input() public searchItem: SearchItem | null = null;
 
-  public test(): void {
-    alert('go to next page!');
+  constructor(private router: Router) {}
+
+  public handleClickMore(): void {
+    this.router.navigate(['/details', this.searchItem?.id]);
   }
 }
