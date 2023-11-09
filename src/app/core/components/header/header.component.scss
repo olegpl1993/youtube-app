@@ -68,6 +68,24 @@
     cursor: pointer;
   }
 
+  &__logout {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 2px 0px 4px 0px var(--primary-color);
+  }
+
+  &__logoutImg {
+    height: 18px;
+    width: 18px;
+    filter: invert(100%);
+  }
+
   &__sortRow {
     width: 100%;
     display: flex;

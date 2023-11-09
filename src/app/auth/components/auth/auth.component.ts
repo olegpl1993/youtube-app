@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import AuthService from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -6,25 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss'],
 })
 export default class AuthComponent {
-  private login = '';
-  private password = '';
+  constructor(private authService: AuthService) {}
+
+  @ViewChild('authForm') authForm!: ElementRef;
 
   handleSubmit(event: Event) {
     event.preventDefault();
-    console.log('submit');
+    this.authService.handleLogin();
+    this.authForm.nativeElement.reset();
   }
 
   handleLoginInput(event: Event) {
-    if (event.target instanceof HTMLInputElement)
-      this.login = event.target.value.trim();
-
-    console.log(this.login);
+    if (event.target instanceof HTMLInputElement) {
+      this.authService.updateLogin(event.target.value.trim());
+    }
   }
 
   handlePasswordInput(event: Event) {
-    if (event.target instanceof HTMLInputElement)
-      this.password = event.target.value.trim();
-
-    console.log(this.password);
+    if (event.target instanceof HTMLInputElement) {
+      this.authService.updatePassword(event.target.value.trim());
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import AuthService from 'src/app/auth/services/auth.service';
 import YoutubeService from 'src/app/youtube/services/youtube.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
 
@@ -8,7 +9,10 @@ import SortKey from 'src/shared/enums/sort-key.enum';
   styleUrls: ['./header.component.scss'],
 })
 export default class HeaderComponent {
-  constructor(private youtubeService: YoutubeService) {}
+  constructor(
+    private youtubeService: YoutubeService,
+    private authService: AuthService
+  ) {}
 
   public isOpenSort = false;
   public sortDirection = true;
@@ -44,5 +48,18 @@ export default class HeaderComponent {
 
   setOpenSort(): void {
     this.isOpenSort = !this.isOpenSort;
+  }
+
+  handleLogout() {
+    this.authService.handleLogout();
+  }
+
+  getLoginFromToken(): string {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const tokenArr = token.split('&');
+      return tokenArr[0];
+    }
+    return '';
   }
 }
