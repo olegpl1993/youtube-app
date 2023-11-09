@@ -45,8 +45,4 @@ export default class HeaderComponent {
   setOpenSort(): void {
     this.isOpenSort = !this.isOpenSort;
   }
-
-  handleLogin(): void {
-    alert('login');
-  }
 }
