@@ -6,7 +6,7 @@ import {
   SearchItem,
   SearchResultList,
 } from 'src/shared/models/search-result.model';
-import ApiService from 'src/shared/sevices/api.service';
+import ApiService from 'src/app/core/services/api.service';
 
 @Injectable({
   providedIn: 'root',
