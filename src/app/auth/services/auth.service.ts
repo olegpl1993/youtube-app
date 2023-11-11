@@ -20,18 +20,20 @@ export default class AuthService {
     this.password.next(value);
   }
 
+  isLogined() {
+    return !!localStorage.getItem('authToken');
+  }
+
   handleLogin() {
     const token = `${this.login.getValue()}&${this.password.getValue()}`;
     localStorage.setItem('authToken', token);
     this.login.next('');
     this.password.next('');
     this.router.navigate(['/']);
-    console.log('authToken = ', localStorage.getItem('authToken'));
   }
 
   handleLogout() {
     localStorage.removeItem('authToken');
     this.router.navigate(['/auth']);
-    console.log('authToken = ', localStorage.getItem('authToken'));
   }
 }

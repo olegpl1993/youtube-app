@@ -28,14 +28,6 @@
       </div>
 
       <div class="header__loginBox">
-        <button class="header__logout" (click)="handleLogout()">
-          <img
-            class="header__logoutImg"
-            src="assets/log-out.svg"
-            alt="logout-img"
-            class="header__logoutImg"
-          />
-        </button>
         <p>{{ getLoginFromToken() }}</p>
         <img
           class="header__loginImg"
@@ -43,6 +35,18 @@
           alt="login-img"
           routerLink="/auth"
         />
+        <button
+          class="header__logout"
+          (click)="handleLogout()"
+          *ngIf="getLoginFromToken()"
+        >
+          <img
+            class="header__logoutImg"
+            src="assets/log-out.svg"
+            alt="logout-img"
+            class="header__logoutImg"
+          />
+        </button>
       </div>
     </div>
 
