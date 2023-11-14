@@ -8,27 +8,27 @@ import { BehaviorSubject } from 'rxjs';
 export default class AuthService {
   constructor(private router: Router) {}
 
-  private login = new BehaviorSubject<string>('');
-  login$ = this.login.asObservable();
+  private loginSource = new BehaviorSubject<string>('');
+  login$ = this.loginSource.asObservable();
   updateLogin(value: string) {
-    this.login.next(value);
+    this.loginSource.next(value);
   }
 
-  private password = new BehaviorSubject<string>('');
-  password$ = this.password.asObservable();
+  private passwordSource = new BehaviorSubject<string>('');
+  password$ = this.passwordSource.asObservable();
   updatePassword(value: string) {
-    this.password.next(value);
+    this.passwordSource.next(value);
   }
 
-  isLogined() {
+  isLoggedIn() {
     return !!localStorage.getItem('authToken');
   }
 
   handleLogin() {
-    const token = `${this.login.getValue()}&${this.password.getValue()}`;
+    const token = `${this.loginSource.getValue()}&${this.passwordSource.getValue()}`;
     localStorage.setItem('authToken', token);
-    this.login.next('');
-    this.password.next('');
+    this.loginSource.next('');
+    this.passwordSource.next('');
     this.router.navigate(['/']);
   }
 

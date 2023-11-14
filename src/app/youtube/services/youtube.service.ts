@@ -17,53 +17,53 @@ export default class YoutubeService {
     private sortService: SortService
   ) {
     this.apiService.getData().subscribe((data) => {
-      this.dataSubject.next(data);
+      this.dataSource.next(data);
     });
   }
 
-  private dataSubject = new BehaviorSubject<SearchResultList | null>(null);
-  data$ = this.dataSubject.asObservable();
+  private dataSource = new BehaviorSubject<SearchResultList | null>(null);
+  data$ = this.dataSource.asObservable();
 
-  private searchResultsSubject = new BehaviorSubject<SearchItem[]>([]);
+  private searchResultsSource = new BehaviorSubject<SearchItem[]>([]);
 
-  private renderDataSubject = new BehaviorSubject<SearchItem[]>([]);
-  renderData$ = this.renderDataSubject.asObservable();
+  private renderDataSource = new BehaviorSubject<SearchItem[]>([]);
+  renderData$ = this.renderDataSource.asObservable();
 
-  private searchInputSubject = new BehaviorSubject('');
+  private searchInputSource = new BehaviorSubject('');
   updateSearchInput(newValue: string) {
-    this.searchInputSubject.next(newValue);
+    this.searchInputSource.next(newValue);
   }
 
-  private sortingInputSubject = new BehaviorSubject('');
-  sortingInput$ = this.sortingInputSubject.asObservable();
+  private sortingInputSource = new BehaviorSubject('');
+  sortingInput$ = this.sortingInputSource.asObservable();
   updateSortingInput(newValue: string) {
-    this.sortingInputSubject.next(newValue);
+    this.sortingInputSource.next(newValue);
   }
 
-  private sortKeySubject = new BehaviorSubject<SortKey | null>(null);
-  sortKey$ = this.sortKeySubject.asObservable();
+  private sortKeySource = new BehaviorSubject<SortKey | null>(null);
+  sortKey$ = this.sortKeySource.asObservable();
   updateSortKey(sortKey: SortKey) {
-    this.sortKeySubject.next(sortKey);
+    this.sortKeySource.next(sortKey);
     this.createRenderData();
   }
 
   createRenderData() {
-    const sortKey = this.sortKeySubject.getValue();
+    const sortKey = this.sortKeySource.getValue();
     if (sortKey === null)
-      this.renderDataSubject.next(this.searchResultsSubject.getValue());
+      this.renderDataSource.next(this.searchResultsSource.getValue());
     else
-      this.renderDataSubject.next(
-        this.sortService.sorter(this.searchResultsSubject.getValue(), sortKey)
+      this.renderDataSource.next(
+        this.sortService.sorter(this.searchResultsSource.getValue(), sortKey)
       );
   }
 
   handleSearch(): void {
-    const data = this.dataSubject.getValue();
-    const searchInput = this.searchInputSubject.getValue();
+    const data = this.dataSource.getValue();
+    const searchInput = this.searchInputSource.getValue();
     const items = data ? data.items : [];
-    if (searchInput.length === 0) this.searchResultsSubject.next(items);
+    if (searchInput.length === 0) this.searchResultsSource.next(items);
     else
-      this.searchResultsSubject.next(
+      this.searchResultsSource.next(
         items.filter((item) =>
           item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
         )
