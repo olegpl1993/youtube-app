@@ -1,11 +1,11 @@
-<div class="details">
+<div class="details" *ngIf="searchItem">
   <div class="container">
     <div class="details__content">
       <div class="details__backBtn" routerLink="/"><</div>
       <div class="details__card">
         <div class="details__imgBox">
           <img
-            src="{{ searchItem?.snippet?.thumbnails?.high?.url }}"
+            src="{{ searchItem.snippet.thumbnails.high.url }}"
             alt="details-img"
             class="details__img"
           />
@@ -13,18 +13,16 @@
         <div class="details__textBox">
           <div class="details__topWrapper">
             <div class="details__topRow">
-              <p class="details__title">{{ searchItem?.snippet?.title }}</p>
+              <p class="details__title">{{ searchItem.snippet.title }}</p>
               <p class="details__date">
-                {{
-                  searchItem?.snippet?.publishedAt | date : "EEEE, MMMM d, y"
-                }}
+                {{ searchItem.snippet.publishedAt | date : "EEEE, MMMM d, y" }}
               </p>
             </div>
 
             <div class="details__description">
               <p class="details__descriptionTitle">Description:</p>
               <p class="details__descriptionText">
-                {{ searchItem?.snippet?.description }}
+                {{ searchItem.snippet.description }}
               </p>
             </div>
           </div>
@@ -32,26 +30,26 @@
           <div class="details__statistics">
             <span class="details__statisticsText">
               <img src="assets/viewed.svg" alt="view-img" />
-              {{ searchItem?.statistics?.viewCount }}
+              {{ searchItem.statistics.viewCount }}
             </span>
             <span class="details__statisticsText">
               <img src="assets/liked.svg" alt="like-img" />
-              {{ searchItem?.statistics?.likeCount }}
+              {{ searchItem.statistics.likeCount }}
             </span>
             <span class="details__statisticsText">
               <img src="assets/dislike.svg" alt="dislike-img" />
-              {{ searchItem?.statistics?.dislikeCount }}
+              {{ searchItem.statistics.dislikeCount }}
             </span>
             <span class="details__statisticsText">
               <img src="assets/Group 9.svg" alt="comment-img" />
-              {{ searchItem?.statistics?.commentCount }}
+              {{ searchItem.statistics.commentCount }}
             </span>
           </div>
 
           <div
-            *ngIf="searchItem?.snippet?.publishedAt"
+            *ngIf="searchItem.snippet.publishedAt"
             class="details__colorRow"
-            [appTimeToColor]="searchItem?.snippet?.publishedAt"
+            [appTimeToColor]="searchItem.snippet.publishedAt"
           ></div>
         </div>
       </div>

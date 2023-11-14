@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  SearchItem,
-} from 'src/shared/models/search-result.model';
+import { SearchItem } from 'src/shared/models/search-result.model';
 import YoutubeService from '../../services/youtube.service';
 
 @Component({
@@ -12,7 +10,7 @@ import YoutubeService from '../../services/youtube.service';
 })
 export default class DetailsComponent {
   public id = '';
-  public searchItem: SearchItem | null | undefined = null;
+  public searchItem: SearchItem | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +21,7 @@ export default class DetailsComponent {
     });
 
     this.youtubeService.data$.subscribe((data) => {
-      this.searchItem = data?.items.find((item) => item.id === this.id);
+      this.searchItem = data?.items.find((item) => item.id === this.id) || null;
     });
   }
 }
