@@ -1,25 +1,27 @@
 <div class="auth">
   <div class="container">
     <div class="auth__content">
-      <form (submit)="handleSubmit($event)" class="auth__card" #authForm>
+      <form (submit)="submitForm($event)" class="auth__card" #authForm>
         <p class="auth__cardTitle">Login</p>
 
         <div class="auth__inputWrapper">
           <div class="auth__inputBox">
             <label for="login" class="auth__label">login</label>
             <input
-              type="text"
+              [(ngModel)]="loginValue"
+              [ngModelOptions]="{ standalone: true }"
+              type="name"
               class="auth__input"
-              (input)="handleLoginInput($event)"
             />
           </div>
 
           <div class="auth__inputBox">
             <label for="password" class="auth__label">password</label>
             <input
+              [(ngModel)]="passwordValue"
+              [ngModelOptions]="{ standalone: true }"
               type="text"
               class="auth__input"
-              (input)="handlePasswordInput($event)"
             />
           </div>
         </div>

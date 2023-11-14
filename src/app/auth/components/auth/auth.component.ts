@@ -9,23 +9,16 @@ import AuthService from '../../services/auth.service';
 export default class AuthComponent {
   constructor(private authService: AuthService) {}
 
+  public loginValue = '';
+  public passwordValue = '';
+
   @ViewChild('authForm') authForm!: ElementRef;
 
-  handleSubmit(event: Event) {
+  submitForm(event: Event) {
     event.preventDefault();
+    this.authService.updateLogin(this.loginValue.trim());
+    this.authService.updatePassword(this.passwordValue.trim());
     this.authService.handleLogin();
     this.authForm.nativeElement.reset();
-  }
-
-  handleLoginInput(event: Event) {
-    if (event.target instanceof HTMLInputElement) {
-      this.authService.updateLogin(event.target.value.trim());
-    }
-  }
-
-  handlePasswordInput(event: Event) {
-    if (event.target instanceof HTMLInputElement) {
-      this.authService.updatePassword(event.target.value.trim());
-    }
   }
 }
