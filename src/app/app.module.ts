@@ -5,9 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import CoreModule from './core/core.module';
-import YoutubeModule from './youtube/youtube.module';
-import AuthModule from './auth/auth.module';
-import PageNotFoundComponent from '../shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +14,6 @@ import PageNotFoundComponent from '../shared/page-not-found/page-not-found.compo
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    YoutubeModule,
-    AuthModule,
-    PageNotFoundComponent,
   ],
   bootstrap: [AppComponent],
 })
