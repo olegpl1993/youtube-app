@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["projects/**/*", "postbuild.js"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
