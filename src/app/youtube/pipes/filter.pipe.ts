@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from '../shared/models/search-result.model';
+import { SearchItem } from '../../../shared/models/search-result.model';
 
 @Pipe({
   name: 'filter',

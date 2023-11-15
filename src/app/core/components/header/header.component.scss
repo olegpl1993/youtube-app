@@ -5,6 +5,10 @@
   align-items: center;
   background-color: var(--secondary-background-color);
 
+  &__logo {
+    cursor: pointer;
+  }
+
   &__searchRow {
     width: 100%;
     display: flex;
@@ -60,8 +64,28 @@
     right: 30px;
   }
 
-  &__loginBtn {
-    background-color: var(--header-background-color);
+  &__loginImg {
+    cursor: pointer;
+  }
+
+  &__logoutImg {
+    height: 18px;
+    width: 18px;
+    filter: invert(100%);
+  }
+
+  &__logout {
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    width: 24px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 2px 0px 4px 0px var(--primary-color);
   }
 
   &__sortRow {

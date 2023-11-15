@@ -30,7 +30,12 @@
     </div>
   </div>
 
-  <app-button (click)="test()" height="32px" width="120px">more...</app-button>
+  <a routerLink="/details/{{ searchItem?.id }}">
+    <app-button height="32px" width="120px">more...</app-button>
+  </a>
 
-  <div class="search-result-item__colorRow" [appTimeToColor]="searchItem?.snippet?.publishedAt"></div>
+  <div
+    class="search-result-item__colorRow"
+    [appTimeToColor]="searchItem?.snippet?.publishedAt"
+  ></div>
 </div>

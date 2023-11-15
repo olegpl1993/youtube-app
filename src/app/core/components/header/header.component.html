@@ -2,7 +2,12 @@
   <div class="container">
     <div class="header__searchRow">
       <div class="header__searchBox">
-        <img src="assets/logo.svg" alt="youtube-img" class="header__logo" />
+        <img
+          src="assets/logo.svg"
+          alt="youtube-img"
+          class="header__logo"
+          routerLink="/"
+        />
 
         <div class="header__searchContainer">
           <input
@@ -23,9 +28,24 @@
       </div>
 
       <div class="header__loginBox">
-        <p>Your Name</p>
-        <button class="header__loginBtn" (click)="handleLogin()">
-          <img src="assets/login.svg" alt="search-login-img" />
+        <p>{{ getLoginFromToken() }}</p>
+        <img
+          class="header__loginImg"
+          src="assets/login.svg"
+          alt="login-img"
+          routerLink="/auth"
+        />
+        <button
+          class="header__logout"
+          (click)="handleLogout()"
+          *ngIf="getLoginFromToken()"
+        >
+          <img
+            class="header__logoutImg"
+            src="assets/log-out.svg"
+            alt="logout-img"
+            class="header__logoutImg"
+          />
         </button>
       </div>
     </div>

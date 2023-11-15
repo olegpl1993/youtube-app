@@ -8,8 +8,4 @@ import { SearchItem } from 'src/shared/models/search-result.model';
 })
 export default class SearchResultItemComponent {
   @Input() public searchItem: SearchItem | null = null;
-
-  public test(): void {
-    alert('go to next page!');
-  }
 }

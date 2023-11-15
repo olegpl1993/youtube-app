@@ -4,21 +4,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
-import HeaderModule from './header/header.module';
-import SearchResultListModule from './search-result-list/search-result-list.module';
-import FilterPipe from './filter.pipe';
+import CoreModule from './core/core.module';
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule,
-    SearchResultListModule,
+    CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [FilterPipe],
   bootstrap: [AppComponent],
 })
 export default class AppModule {}
