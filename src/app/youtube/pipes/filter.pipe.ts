@@ -11,7 +11,7 @@ export default class FilterPipe implements PipeTransform {
     }
 
     return items.filter((item) =>
-      item.snippet.tags.includes(filter.toLowerCase())
+      item.snippet.title.toLowerCase().includes(filter.toLowerCase())
     );
   }
 }

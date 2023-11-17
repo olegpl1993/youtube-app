@@ -15,16 +15,10 @@ export default class YoutubeService {
   constructor(
     private apiService: ApiService,
     private sortService: SortService
-  ) {
-    this.apiService.getData().subscribe((data) => {
-      this.dataSource.next(data);
-    });
-  }
+  ) {}
 
   private dataSource = new BehaviorSubject<SearchResultList | null>(null);
   data$ = this.dataSource.asObservable();
-
-  private searchResultsSource = new BehaviorSubject<SearchItem[]>([]);
 
   private renderDataSource = new BehaviorSubject<SearchItem[]>([]);
   renderData$ = this.renderDataSource.asObservable();
@@ -49,25 +43,30 @@ export default class YoutubeService {
 
   createRenderData() {
     const sortKey = this.sortKeySource.getValue();
-    if (sortKey === null)
-      this.renderDataSource.next(this.searchResultsSource.getValue());
-    else
+    if (sortKey === null) {
+      this.renderDataSource.next(this.dataSource.getValue()?.items || []);
+    } else {
       this.renderDataSource.next(
-        this.sortService.sorter(this.searchResultsSource.getValue(), sortKey)
+        this.sortService.sorter(
+          this.dataSource.getValue()?.items || [],
+          sortKey
+        )
       );
+    }
   }
 
   handleSearch(): void {
-    const data = this.dataSource.getValue();
-    const searchInput = this.searchInputSource.getValue();
-    const items = data ? data.items : [];
-    if (searchInput.length === 0) this.searchResultsSource.next(items);
-    else
-      this.searchResultsSource.next(
-        items.filter((item) =>
-          item.snippet.title.toLowerCase().includes(searchInput.toLowerCase())
-        )
-      );
-    this.createRenderData();
+    this.apiService
+      .getData(this.searchInputSource.getValue())
+      .subscribe((data) => {
+        console.log('firstData = ', data);
+        const videoIds = data.items.map((item) => item.id.videoId).join(',');
+
+        this.apiService.getMovieData(videoIds).subscribe((movieData) => {
+          console.log('movieData = ', movieData);
+          this.dataSource.next(movieData);
+          this.createRenderData();
+        });
+      });
   }
 }
