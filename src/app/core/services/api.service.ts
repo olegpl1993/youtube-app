@@ -13,7 +13,7 @@ export default class ApiService {
   constructor(private http: HttpClient) {}
 
   getData(query: string): Observable<DataList> {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${this.apiKey}&maxResults=2`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${this.apiKey}&maxResults=10`;
     return this.http.get<DataList>(url);
   }
 

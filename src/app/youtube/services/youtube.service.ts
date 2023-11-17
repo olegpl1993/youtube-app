@@ -15,7 +15,24 @@ export default class YoutubeService {
   constructor(
     private apiService: ApiService,
     private sortService: SortService
-  ) {}
+  ) {
+    this.searchInputSource.subscribe((value) => {
+      if (value.length > 2) {
+        this.apiService
+          .getData(this.searchInputSource.getValue())
+          .subscribe((data) => {
+            const videoIds = data.items
+              .map((item) => item.id.videoId)
+              .join(',');
+
+            this.apiService.getMovieData(videoIds).subscribe((movieData) => {
+              this.dataSource.next(movieData);
+              this.createRenderData();
+            });
+          });
+      }
+    });
+  }
 
   private dataSource = new BehaviorSubject<SearchResultList | null>(null);
   data$ = this.dataSource.asObservable();
@@ -24,8 +41,15 @@ export default class YoutubeService {
   renderData$ = this.renderDataSource.asObservable();
 
   private searchInputSource = new BehaviorSubject('');
+  private tempInputSource = new BehaviorSubject('');
+  private timer: ReturnType<typeof setTimeout> | undefined;
   updateSearchInput(newValue: string) {
-    this.searchInputSource.next(newValue);
+    this.tempInputSource.next(newValue);
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      const tempValue = this.tempInputSource.getValue();
+      this.searchInputSource.next(tempValue);
+    }, 2000);
   }
 
   private sortingInputSource = new BehaviorSubject('');
@@ -53,20 +77,5 @@ export default class YoutubeService {
         )
       );
     }
-  }
-
-  handleSearch(): void {
-    this.apiService
-      .getData(this.searchInputSource.getValue())
-      .subscribe((data) => {
-        console.log('firstData = ', data);
-        const videoIds = data.items.map((item) => item.id.videoId).join(',');
-
-        this.apiService.getMovieData(videoIds).subscribe((movieData) => {
-          console.log('movieData = ', movieData);
-          this.dataSource.next(movieData);
-          this.createRenderData();
-        });
-      });
   }
 }
