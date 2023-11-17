@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchItem } from 'src/shared/models/search-result.model';
-import YoutubeService from '../../services/youtube.service';
+import ApiService from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-details',
@@ -14,14 +14,14 @@ export default class DetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private youtubeService: YoutubeService
+    private apiService: ApiService
   ) {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
 
-    this.youtubeService.data$.subscribe((data) => {
-      this.searchItem = data?.items.find((item) => item.id === this.id) || null;
+    this.apiService.getMovieData(this.id).subscribe((data) => {
+      this.searchItem = data?.items[0] || null;
     });
   }
 }
