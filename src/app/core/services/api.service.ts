@@ -7,18 +7,15 @@ import { DataList, SearchResultList } from 'src/shared/models/search-result.mode
   providedIn: 'root',
 })
 export default class ApiService {
-  // private apiKey = 'AIzaSyBoa9dWd02Nvz0RPSHYKXAHgd2nKAEAHu8';
-  private apiKey = 'AIzaSyB9rWiwNDGbsAKgwcnQOTIwp87QGmaiU7Y';
-
   constructor(private http: HttpClient) {}
 
   getData(query: string): Observable<DataList> {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${this.apiKey}&maxResults=10`;
+    const url = `search?part=snippet&q=${query}&type=video&maxResults=8`;
     return this.http.get<DataList>(url);
   }
 
   getMovieData(videoIds: string): Observable<SearchResultList> {
-    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoIds}&key=${this.apiKey}`;
+    const url = `videos?part=snippet,statistics&id=${videoIds}`;
     return this.http.get<SearchResultList>(url);
   }
 }
