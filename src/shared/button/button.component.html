@@ -2,6 +2,8 @@
   mat-flat-button
   class="button"
   [ngStyle]="{ height, width }"
+  [disabled]="disabled"
+  [ngStyle]="isDisabled()"
 >
   <ng-content></ng-content>
 </button>

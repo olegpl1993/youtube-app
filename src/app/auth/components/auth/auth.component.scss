@@ -10,7 +10,7 @@
   &__card {
     display: flex;
     width: 350px;
-    height: 250px;
+    min-height: 250px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -48,6 +48,10 @@
     background-color: var(--input-background-color);
     font-size: 10px;
     padding: 10px;
+  }
+
+  &__error {
+    color: red;
   }
 
   &__button {

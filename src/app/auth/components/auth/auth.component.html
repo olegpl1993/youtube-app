@@ -1,34 +1,90 @@
 <div class="auth">
   <div class="container">
     <div class="auth__content">
-      <form (submit)="submitForm($event)" class="auth__card" #authForm>
+      <form class="auth__card" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <p class="auth__cardTitle">Login</p>
 
         <div class="auth__inputWrapper">
           <div class="auth__inputBox">
             <label for="login" class="auth__label">login</label>
-            <input
-              [(ngModel)]="loginValue"
-              [ngModelOptions]="{ standalone: true }"
-              type="name"
-              class="auth__input"
-            />
+            <input formControlName="login" type="text" class="auth__input" />
+            <p
+              class="auth__error"
+              *ngIf="
+                loginForm.get('login')?.hasError('required') &&
+                loginForm.get('password')?.dirty
+              "
+            >
+              Please enter a login email
+            </p>
+            <p
+              class="auth__error"
+              *ngIf="
+                loginForm.get('login')?.hasError('email') &&
+                loginForm.get('login')?.dirty
+              "
+            >
+              The login email is invalid
+            </p>
           </div>
 
           <div class="auth__inputBox">
             <label for="password" class="auth__label">password</label>
-            <input
-              [(ngModel)]="passwordValue"
-              [ngModelOptions]="{ standalone: true }"
-              type="text"
-              class="auth__input"
-            />
+            <input formControlName="password" type="text" class="auth__input" />
+            <p
+              class="auth__error"
+              *ngIf="
+                loginForm.get('password')?.hasError('required') &&
+                loginForm.get('password')?.dirty
+              "
+            >
+              Please enter a password
+            </p>
+
+            <div
+              class="auth__error"
+              *ngIf="
+                loginForm.get('password')?.hasError('passwordInvalid') &&
+                !loginForm.get('password')?.hasError('required')
+              "
+            >
+              Your password isn't strong enough.
+              <ul>
+                <li *ngIf="!loginForm.get('password')?.hasError('hasMinLength')">
+                  At least 8 characters
+                </li>
+                <li
+                  *ngIf="!loginForm.get('password')?.hasError('hasMixedCase')"
+                >
+                  A mixture of both uppercase and lowercase letters
+                </li>
+                <li
+                  *ngIf="
+                    !loginForm.get('password')?.hasError('hasLettersAndNumbers')
+                  "
+                >
+                  A mixture of letters and numbers
+                </li>
+                <li
+                  *ngIf="
+                    !loginForm.get('password')?.hasError('hasSpecialCharacter')
+                  "
+                >
+                  Inclusion of at least one special character (e.g., ! @ # ? ])
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <app-button height="30px" width="124px" class="auth__button"
-          >Login</app-button
+        <app-button
+          height="30px"
+          width="124px"
+          disabled="{{ !loginForm.valid }}"
+          class="auth__button"
         >
+          Login
+        </app-button>
       </form>
     </div>
   </div>
