@@ -1,1 +1,61 @@
-<p>admin works!</p>
+<div class="admin">
+  <div class="container">
+    <div class="admin__content">
+      <form
+        class="admin__card"
+        [formGroup]="createCardForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <p class="admin__cardTitle">Create new card</p>
+
+        <div class="admin__inputWrapper">
+          <div class="admin__inputBox">
+            <label for="title" class="admin__label">Title</label>
+            <input formControlName="title" type="text" class="admin__input" />
+          </div>
+          <p
+            class="admin__error"
+            *ngIf="
+              createCardForm.get('title')?.hasError('required') &&
+              createCardForm.get('title')?.dirty
+            "
+          >
+            Please enter a title
+          </p>
+
+          <div class="admin__inputBox">
+            <label for="discription" class="admin__label">Discription</label>
+            <input
+              formControlName="discription"
+              type="text"
+              class="admin__input"
+            />
+          </div>
+
+          <div class="admin__inputBox">
+            <label for="img" class="admin__label">Img</label>
+            <input formControlName="img" type="text" class="admin__input" />
+          </div>
+
+          <div class="admin__inputBox">
+            <label for="linkVideo" class="admin__label">Link video</label>
+            <input
+              formControlName="linkVideo"
+              type="text"
+              class="admin__input"
+            />
+          </div>
+        </div>
+
+        <app-button
+          height="30px"
+          width="124px"
+          class="admin__button"
+          disabled="{{ !createCardForm.valid }}"
+        >
+          Create card
+        </app-button>
+      </form>
+    </div>
+  </div>
+</div>
