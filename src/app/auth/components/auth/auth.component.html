@@ -12,7 +12,7 @@
               class="auth__error"
               *ngIf="
                 loginForm.get('login')?.hasError('required') &&
-                loginForm.get('password')?.dirty
+                loginForm.get('login')?.dirty
               "
             >
               Please enter a login email
