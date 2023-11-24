@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   AbstractControl,
+  FormArray,
   FormBuilder,
   FormGroup,
   ValidationErrors,
@@ -29,7 +30,43 @@ export default class AdminComponent {
       img: ['', [Validators.required]],
       linkVideo: ['', [Validators.required]],
       creationDate: ['', [Validators.required, this.futureDateValidator()]],
+      tags: [''],
+      tagsArray: this.fb.array(
+        [],
+        [Validators.minLength(5), Validators.maxLength(5)]
+      ),
     });
+  }
+
+  get tags() {
+    return this.createCardForm.get('tags');
+  }
+
+  get tagsArray() {
+    return this.createCardForm.get('tagsArray') as FormArray;
+  }
+
+  addTag(event: Event) {
+    event.preventDefault();
+    const tagValue = this.tags?.value.trim();
+
+    if (tagValue !== '' && this.tagsArray?.length < 5) {
+      this.tagsArray?.push(this.fb.control(tagValue));
+      this.tags?.setValue('');
+
+      if (this.tagsArray?.length === 5) {
+        this.tags?.disable();
+        this.createCardForm.get('submitButton')?.disable();
+      }
+    }
+  }
+
+  removeTag(index: number) {
+    this.tagsArray?.removeAt(index);
+
+    if (this.tagsArray?.length < 5) {
+      this.tags?.enable();
+    }
   }
 
   futureDateValidator(): ValidatorFn {
@@ -41,7 +78,14 @@ export default class AdminComponent {
     };
   }
 
+  reset(event: Event) {
+    event.preventDefault();
+    this.createCardForm.reset();
+    this.tagsArray?.clear();
+    this.tags?.enable();
+  }
+
   onSubmit() {
-    console.log(this.createCardForm);
+    console.log(this.createCardForm.value);
   }
 }

@@ -103,16 +103,49 @@
               The date is invalid
             </p>
           </div>
+
+          <label for="tags" class="admin__label">Tags:</label>
+          <div class="admin__inputTagsRow">
+            <input
+              type="text"
+              id="tags"
+              formControlName="tags"
+              class="admin__inputTags"
+            />
+            <app-button
+              (click)="addTag($event)"
+              disabled="{{ tagsArray.length >= 5 }}"
+            >
+              Add tag
+            </app-button>
+          </div>
+          <div class="admin__tagsBox">
+            <span *ngFor="let tag of tagsArray.controls" class="admin__tag">
+              {{ tag.value }}
+              <button (click)="removeTag(tag.value)" class="admin__tagsClose">
+                x
+              </button>
+            </span>
+          </div>
         </div>
 
-        <app-button
-          height="30px"
-          width="124px"
-          class="admin__button"
-          disabled="{{ !createCardForm.valid }}"
-        >
-          Create card
-        </app-button>
+        <div class="admin__buttonsRow">
+          <app-button
+            height="30px"
+            width="124px"
+            (click)="reset($event)"
+          >
+            Reset
+          </app-button>
+
+          <app-button
+            height="30px"
+            width="124px"
+            disabled="{{ !createCardForm.valid }}"
+          >
+            Create card
+          </app-button>
+        </div>
       </form>
     </div>
   </div>
