@@ -33,7 +33,7 @@ export default class AdminComponent {
       tags: [''],
       tagsArray: this.fb.array(
         [],
-        [Validators.minLength(5), Validators.maxLength(5)]
+        [Validators.required, Validators.minLength(5), Validators.maxLength(5)]
       ),
     });
   }
