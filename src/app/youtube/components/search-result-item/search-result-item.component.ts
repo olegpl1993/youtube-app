@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SearchItem } from 'src/shared/models/search-result.model';
+import { SearchItem } from 'src/app/redux/state.models';
 
 @Component({
   selector: 'app-search-result-item',

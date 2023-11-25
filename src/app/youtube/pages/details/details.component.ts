@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SearchItem } from 'src/shared/models/search-result.model';
+import { SearchItem } from 'src/app/redux/state.models';
 import ApiService from 'src/app/core/services/api.service';
 import { Subscription } from 'rxjs';
 

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SearchItem } from 'src/shared/models/search-result.model';
+import { SearchItem } from 'src/app/redux/state.models';
 import SortKey from 'src/shared/enums/sort-key.enum';
 import { Subscription } from 'rxjs';
 import YoutubeService from '../../services/youtube.service';

@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import SortService from 'src/app/youtube/services/sort.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
-import {
-  SearchItem,
-  SearchResultList,
-} from 'src/shared/models/search-result.model';
+import { SearchItem, SearchResultList } from 'src/app/redux/state.models';
 import ApiService from 'src/app/core/services/api.service';
 
 @Injectable({

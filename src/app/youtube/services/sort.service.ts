@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import SortKey from 'src/shared/enums/sort-key.enum';
-import { SearchItem } from 'src/shared/models/search-result.model';
+import { SearchItem } from 'src/app/redux/state.models';
 
 @Injectable({
   providedIn: 'root',
