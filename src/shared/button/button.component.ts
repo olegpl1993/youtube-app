@@ -13,4 +13,12 @@ export default class ButtonComponent {
   @Input() height = '32px';
 
   @Input() width = '120px';
+
+  @Input() disabled = 'false';
+
+  isDisabled() {
+    return this.disabled === 'true'
+      ? { 'background-color': '#b1b1b1', 'box-shadow': 'none' }
+      : {};
+  }
 }

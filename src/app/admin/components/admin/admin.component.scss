@@ -1,4 +1,4 @@
-.auth {
+.admin {
   &__content {
     padding-top: 45px;
     display: flex;
@@ -58,7 +58,50 @@
     color: red;
   }
 
-  &__button {
-    align-self: flex-end;
+  &__inputTagsRow {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__inputTags {
+    width: 100%;
+    background-color: var(--input-background-color);
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  &__tagsBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 5px 10px;
+  }
+
+  &__tagsClose {
+    display: flex;
+    padding-left: 8px;
+    padding-top: 2px;
+    height: 24px;
+    width: 24px;
+    background-color: #c1c1c1;
+    color: #575757;
+    border-radius: 50%;
+    font-size: 15px;
+  }
+
+  &__buttonsRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }

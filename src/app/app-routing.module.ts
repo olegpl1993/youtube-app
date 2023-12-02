@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.default),
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then((m) => m.default),
+    canActivate: [authGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('../shared/page-not-found/page-not-found.component').then(

@@ -1,0 +1,152 @@
+<div class="admin">
+  <div class="container">
+    <div class="admin__content">
+      <form
+        class="admin__card"
+        [formGroup]="createCardForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <p class="admin__cardTitle">Create new card</p>
+
+        <div class="admin__inputWrapper">
+          <div class="admin__inputBox">
+            <label for="title" class="admin__label">Title</label>
+            <input formControlName="title" type="text" class="admin__input" />
+          </div>
+          <div class="admin_alert" *ngIf="createCardForm.get('title')?.dirty">
+            <p
+              class="admin__error"
+              *ngIf="createCardForm.get('title')?.errors?.['required']"
+            >
+              Please enter a title
+            </p>
+            <p
+              class="admin__error"
+              *ngIf="createCardForm.get('title')?.errors?.['minlength']"
+            >
+              The title is too short
+            </p>
+            <p
+              class="admin__error"
+              *ngIf="createCardForm.get('title')?.errors?.['maxlength']"
+            >
+              The title is too long
+            </p>
+          </div>
+
+          <div class="admin__inputBox">
+            <label for="discription" class="admin__label">Discription</label>
+            <input
+              formControlName="discription"
+              type="text"
+              class="admin__input"
+            />
+          </div>
+          <p
+            class="admin__error"
+            *ngIf="createCardForm.get('discription')?.errors?.['maxlength'] 
+            && createCardForm.get('discription')?.dirty"
+          >
+            The discription is too long
+          </p>
+
+          <div class="admin__inputBox">
+            <label for="img" class="admin__label">Link img</label>
+            <input formControlName="img" type="text" class="admin__input" />
+          </div>
+          <p
+            class="admin__error"
+            *ngIf="createCardForm.get('img')?.errors?.['required'] 
+            && createCardForm.get('img')?.dirty"
+          >
+            Please enter a link to the image
+          </p>
+
+          <div class="admin__inputBox">
+            <label for="linkVideo" class="admin__label">Link video</label>
+            <input
+              formControlName="linkVideo"
+              type="text"
+              class="admin__input"
+            />
+          </div>
+          <p
+            class="admin__error"
+            *ngIf="createCardForm.get('linkVideo')?.errors?.['required'] 
+            && createCardForm.get('linkVideo')?.dirty"
+          >
+            Please enter a link to the video
+          </p>
+
+          <div class="admin__inputBox">
+            <label for="creationDate" class="admin__label">Сreation date</label>
+            <input
+              formControlName="creationDate"
+              type="date"
+              class="admin__input"
+            />
+          </div>
+          <div
+            class="admin_alert"
+            *ngIf="createCardForm.get('creationDate')?.dirty"
+          >
+            <p
+              class="admin__error"
+              *ngIf="createCardForm.get('creationDate')?.errors?.['required']"
+            >
+              Please enter a creation date
+            </p>
+            <p
+              class="admin__error"
+              *ngIf="createCardForm.get('creationDate')?.errors?.['futureDate']"
+            >
+              The date is invalid
+            </p>
+          </div>
+
+          <label for="tags" class="admin__label">Tags:</label>
+          <div class="admin__inputTagsRow">
+            <input
+              type="text"
+              id="tags"
+              formControlName="tags"
+              class="admin__inputTags"
+            />
+            <app-button
+              (click)="addTag($event)"
+              disabled="{{ tagsArray.length >= 5 }}"
+            >
+              Add tag
+            </app-button>
+          </div>
+          <div class="admin__tagsBox">
+            <span *ngFor="let tag of tagsArray.controls" class="admin__tag">
+              {{ tag.value }}
+              <button (click)="removeTag(tag.value)" class="admin__tagsClose">
+                x
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="admin__buttonsRow">
+          <app-button
+            height="30px"
+            width="124px"
+            (click)="reset($event)"
+          >
+            Reset
+          </app-button>
+
+          <app-button
+            height="30px"
+            width="124px"
+            disabled="{{ !createCardForm.valid }}"
+          >
+            Create card
+          </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
