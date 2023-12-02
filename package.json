@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --open",
-    "build": "ng build",
+    "build": "ng build --base-href /youtube-app/",
     "postbuild": "node postbuild.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
