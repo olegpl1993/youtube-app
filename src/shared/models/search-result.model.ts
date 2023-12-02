@@ -1,3 +1,23 @@
+export interface DataList {
+  TODO: string;
+  kind: string;
+  etag: string;
+  pageInfo: PageInfo;
+  items: SearchItemData[];
+}
+
+export interface SearchItemData {
+  kind: string;
+  etag: string;
+  id: Id;
+  snippet: Snippet;
+}
+
+export interface Id {
+  kind: string;
+  videoId: string;
+}
+
 export interface SearchResultList {
   TODO: string;
   kind: string;

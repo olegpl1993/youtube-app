@@ -38,12 +38,9 @@ export default class HeaderComponent {
 
   handleSearchInput(event: Event): void {
     if (event.target instanceof HTMLInputElement) {
-      this.youtubeService.updateSearchInput(String(event.target.value).trim());
+      const value = String(event.target.value).trim();
+      this.youtubeService.updateSearchInput(value);
     }
-  }
-
-  handleSearch(): void {
-    this.youtubeService.handleSearch();
   }
 
   setOpenSort(): void {
