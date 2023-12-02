@@ -6,6 +6,9 @@ import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import CoreModule from './core/core.module';
 import Interceptor from './core/services/interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { counterModule } from './redux/counter.module';
+import { counterReducer } from './redux/counter.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +18,8 @@ import Interceptor from './core/services/interceptor.service';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    StoreModule.forRoot({ count: counterReducer }),
+    counterModule,
   ],
   providers: [
     {
