@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { debounce, interval } from 'rxjs';
 import AuthService from 'src/app/auth/services/auth.service';
+import {
+  YoutubeActions,
+  YoutubeState,
+} from 'src/app/redux/youtube/youtube.state';
 import YoutubeService from 'src/app/youtube/services/youtube.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
 
@@ -11,8 +18,21 @@ import SortKey from 'src/shared/enums/sort-key.enum';
 export default class HeaderComponent {
   constructor(
     private youtubeService: YoutubeService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private store: Store<{ youtube: YoutubeState }>
+  ) {
+    this.formControlString.valueChanges
+      .pipe(debounce(() => interval(2000)))
+      .subscribe((value) => {
+        if (value) {
+          const newValue = String(value).trim();
+          this.youtubeService.updateSearchInput(value);
+          this.store.dispatch(
+            YoutubeActions.updateSearchInput({ searchInput: newValue })
+          );
+        }
+      });
+  }
 
   public isOpenSort = false;
   public sortDirection = true;
@@ -36,13 +56,7 @@ export default class HeaderComponent {
     this.sortDirection = !this.sortDirection;
   }
 
-  handleSearchInput(event: Event): void {
-    if (event.target instanceof HTMLInputElement) {
-      const value = String(event.target.value).trim();
-      this.youtubeService.updateSearchInput(value);
-    }
-  }
-
+  public formControlString = new FormControl('');
   setOpenSort(): void {
     this.isOpenSort = !this.isOpenSort;
   }

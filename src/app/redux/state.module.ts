@@ -1,8 +1,8 @@
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './counter/counter.state';
+import { youtubeReducer } from './youtube/youtube.state';
 
 export const counterFeatureKey = 'counter';
 
 export const stateModule = StoreModule.forFeature('counter', {
-  counter: counterReducer,
+  youtube: youtubeReducer,
 });

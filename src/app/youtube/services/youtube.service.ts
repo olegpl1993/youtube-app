@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import SortService from 'src/app/youtube/services/sort.service';
 import SortKey from 'src/shared/enums/sort-key.enum';
-import { SearchItem, SearchResultList } from 'src/app/redux/state.models';
+import {
+  SearchItem,
+  SearchResultList,
+} from 'src/app/redux/youtube/state.models';
 import ApiService from 'src/app/core/services/api.service';
 
 @Injectable({
@@ -38,15 +41,8 @@ export default class YoutubeService {
   renderData$ = this.renderDataSource.asObservable();
 
   private searchInputSource = new BehaviorSubject('');
-  private tempInputSource = new BehaviorSubject('');
-  private timer: ReturnType<typeof setTimeout> | undefined;
   updateSearchInput(newValue: string) {
-    this.tempInputSource.next(newValue);
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      const tempValue = this.tempInputSource.getValue();
-      this.searchInputSource.next(tempValue);
-    }, 2000);
+    this.searchInputSource.next(newValue);
   }
 
   private sortingInputSource = new BehaviorSubject('');

@@ -8,7 +8,7 @@ import CoreModule from './core/core.module';
 import Interceptor from './core/services/interceptor.service';
 import { StoreModule } from '@ngrx/store';
 import { stateModule } from './redux/state.module';
-import { counterReducer } from './redux/counter/counter.state';
+import { youtubeReducer } from './redux/youtube/youtube.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,7 @@ import { counterReducer } from './redux/counter/counter.state';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({ count: counterReducer }),
+    StoreModule.forRoot({ youtube: youtubeReducer }),
     stateModule,
   ],
   providers: [

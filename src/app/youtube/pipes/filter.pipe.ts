@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from '../../redux/state.models';
+import { SearchItem } from '../../redux/youtube/state.models';
 
 @Pipe({
   name: 'filter',
