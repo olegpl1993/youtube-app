@@ -4,7 +4,7 @@ import SortKey from 'src/shared/enums/sort-key.enum';
 import { Observable, Subscription } from 'rxjs';
 import YoutubeService from '../../services/youtube.service';
 import { Store } from '@ngrx/store';
-import { decrement, increment } from 'src/app/redux/counter.state';
+import { decrement, increment } from 'src/app/redux/counter/counter.state';
 
 @Component({
   selector: 'app-search-result-list',
