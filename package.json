@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --open",
-    "build": "ng build --base-href /olegpl1993-ANGULAR2023Q4/",
+    "build": "ng build",
     "postbuild": "node postbuild.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
