@@ -1,4 +1,4 @@
-# Deploy: https://olegpl1993.github.io/youtube-app/
+# Deploy: https://my-tube-hub.netlify.app/
 
 ## Youtube
 
